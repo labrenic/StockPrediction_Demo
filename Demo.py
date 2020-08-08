@@ -14,6 +14,10 @@ import random
 import time
 import os
 
+
+# credit to user blah blah
+
+
 np.random.seed(314)
 tf.random.set_seed(314)
 random.seed(314)
@@ -186,6 +190,8 @@ mse, mae = model.evaluate(data["X_test"], data["y_test"], verbose=0)
 # calculate the mean absolute error (inverse scaling)
 mean_absolute_error = data["column_scaler"]["adjclose"].inverse_transform([[mae]])[0][0]
 print("Mean Absolute Error:", mean_absolute_error)
+
+
 
 
 def predict(model, data, classification=False):
