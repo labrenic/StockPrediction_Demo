@@ -1,3 +1,6 @@
+# #https://www.thepythoncode.com/article/stock-price-prediction-in-python-using-tensorflow-2-and-keras
+# add credits to this dev for comming up with the model
+
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
@@ -13,10 +16,6 @@ import matplotlib.pyplot as plt
 import random
 import time
 import os
-
-
-# credit to user blah blah
-
 
 np.random.seed(314)
 tf.random.set_seed(314)
@@ -190,8 +189,6 @@ mse, mae = model.evaluate(data["X_test"], data["y_test"], verbose=0)
 # calculate the mean absolute error (inverse scaling)
 mean_absolute_error = data["column_scaler"]["adjclose"].inverse_transform([[mae]])[0][0]
 print("Mean Absolute Error:", mean_absolute_error)
-
-
 
 
 def predict(model, data, classification=False):
