@@ -1,3 +1,6 @@
+# #https://www.thepythoncode.com/article/stock-price-prediction-in-python-using-tensorflow-2-and-keras
+# add credits to this dev for comming up with the model
+
 import os
 import time
 from tensorflow.keras.layers import LSTM
