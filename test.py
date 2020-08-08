@@ -1,8 +1,8 @@
 # #https://www.thepythoncode.com/article/stock-price-prediction-in-python-using-tensorflow-2-and-keras
-# add credits to this dev for comming up with the model
+# add credits to this dev for coming up with the model
 
 from stock_prediction import create_model, load_data, np
-from Parameters import *
+from parameters import *
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score
 

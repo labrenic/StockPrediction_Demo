@@ -1,12 +1,12 @@
 # #https://www.thepythoncode.com/article/stock-price-prediction-in-python-using-tensorflow-2-and-keras
-# add credits to this dev for comming up with the model
+# add credits to this dev for coming up with the model
 
 from stock_prediction import create_model, load_data
 from tensorflow.keras.layers import LSTM
 from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard
 import os
 import pandas as pd
-from Parameters import *
+from parameters import *
 
 
 # create these folders if they does not exist

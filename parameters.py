@@ -1,5 +1,5 @@
 # #https://www.thepythoncode.com/article/stock-price-prediction-in-python-using-tensorflow-2-and-keras
-# add credits to this dev for comming up with the model
+# add credits to this dev for coming up with the model
 
 import os
 import time
@@ -38,7 +38,7 @@ BIDIRECTIONAL = False
 LOSS = "huber_loss"
 OPTIMIZER = "adam"
 BATCH_SIZE = 64
-EPOCHS = 400
+EPOCHS = 20
 
 # Apple stock market
 ticker = "AAPL"
