@@ -109,8 +109,8 @@ def load_data(ticker, n_steps=50, scale=True, shuffle=True, lookup_step=1,
     return result
 
 
-def create_model(sequence_length, units=256, cell=LSTM, n_layers=2, dropout=0.3,
-                loss="mean_absolute_error", optimizer="rmsprop", bidirectional=False):
+def create_model(sequence_length, units, cell, n_layers, dropout,
+                loss, optimizer, bidirectional):
     model = Sequential()
     for i in range(n_layers):
         if i == 0:
