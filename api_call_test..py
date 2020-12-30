@@ -1,14 +1,17 @@
 import requests.api
 import numpy as np
 import pandas as pd
+from pandas import json_normalize
 
 
-ticker = 'TSLA'
+ticker = 'JFC'
 start_date = '2010-07-10'
 end_date = '2020-12-30'
 
-r = requests.get('https://pselookup.vrymel.com/api/stocks/JFC/history/1999-02-04/2020-07-30')
+r = requests.get(f'https://pselookup.vrymel.com/api/stocks/{ticker}/history/{start_date}/{end_date}')
 
 data = r.json()
 
-print(data['history'])
+df = json_normalize(data, 'history')
+
+print(df.head())
