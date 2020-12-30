@@ -32,6 +32,9 @@ def load_data(ticker, n_steps=50, scale=True, shuffle=True, lookup_step=1,
         test_size (float): ratio for test data, default is 0.2 (20% testing data)
         feature_columns (list): the list of features to use to feed into the model, default is everything grabbed from yahoo_fin
     """
+
+    # pul data from API
+
     # see if ticker is already a loaded stock from yahoo finance
     if isinstance(ticker, str):
         # load it from yahoo_fin library
