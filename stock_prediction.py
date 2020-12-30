@@ -6,12 +6,14 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout, Bidirectional
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
-from yahoo_fin import stock_info as si
+#from yahoo_fin import stock_info as si
 from collections import deque
 
 import numpy as np
 import pandas as pd
+from pandas import json_normalize
 import random
+import requests
 
 # set seed, so we can get the same results after rerunning several times
 np.random.seed(314)
@@ -20,7 +22,7 @@ random.seed(314)
 
 
 def load_data(ticker, n_steps=50, scale=True, shuffle=True, lookup_step=1, 
-                test_size=0.2, feature_columns=['adjclose', 'volume', 'open', 'high', 'low']):
+                test_size=0.2, feature_columns=['close', 'volume', 'open', 'high', 'low'], start_date='1999-02-04', end_date='2020-07-30'):
     """
     Loads data from Yahoo Finance source, as well as scaling, shuffling, normalizing and splitting.
     Params:
@@ -35,15 +37,21 @@ def load_data(ticker, n_steps=50, scale=True, shuffle=True, lookup_step=1,
 
     # pul data from API
 
-    # see if ticker is already a loaded stock from yahoo finance
-    if isinstance(ticker, str):
-        # load it from yahoo_fin library
-        df = si.get_data(ticker)
-    elif isinstance(ticker, pd.DataFrame):
-        # already loaded, use it directly
-        df = ticker
-    else:
-        raise TypeError("ticker can be either a str or a `pd.DataFrame` instances")
+    r = requests.get('https://pselookup.vrymel.com/api/stocks/'+ticker+'/history/'+start_date+'/'+end_date)
+
+    data = r.json()
+
+    df = json_normalize(data, 'history')
+
+    # # see if ticker is already a loaded stock from yahoo finance
+    # if isinstance(ticker, str):
+    #     # load it from yahoo_fin library
+    #     df = si.get_data(ticker)
+    # elif isinstance(ticker, pd.DataFrame):
+    #     # already loaded, use it directly
+    #     df = ticker
+    # else:
+    #     raise TypeError("ticker can be either a str or a `pd.DataFrame` instances")
 
     # this will contain all the elements we want to return from this function
     result = {}
@@ -66,7 +74,7 @@ def load_data(ticker, n_steps=50, scale=True, shuffle=True, lookup_step=1,
         result["column_scaler"] = column_scaler
 
     # add the target column (label) by shifting by `lookup_step`
-    df['future'] = df['adjclose'].shift(-lookup_step)
+    df['future'] = df['close'].shift(-lookup_step)
 
     # last `lookup_step` columns contains NaN in future column
     # get them before droping NaNs
