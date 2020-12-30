@@ -20,7 +20,7 @@ if not os.path.isdir("data"):
     os.mkdir("data")
 
 # load the data
-data = load_data(ticker, N_STEPS, lookup_step=LOOKUP_STEP, test_size=TEST_SIZE, feature_columns=FEATURE_COLUMNS)
+data = load_data(ticker, N_STEPS, lookup_step=LOOKUP_STEP, test_size=TEST_SIZE, feature_columns=FEATURE_COLUMNS,start_date=START_DATE,end_date=END_DATE)
 
 # save the dataframe
 data["df"].to_csv(ticker_data_filename)
