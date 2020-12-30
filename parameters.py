@@ -14,9 +14,13 @@ LOOKUP_STEP = 1
 # test ratio size, 0.2 is 20%
 TEST_SIZE = 0.2
 # features to use
-FEATURE_COLUMNS = ["adjclose", "volume", "open", "high", "low"]
+FEATURE_COLUMNS = ["close", "volume", "open", "high", "low"]
 # date now
 date_now = time.strftime("%Y-%m-%d")
+
+# Data history
+START_DATE = '1999-02-04'
+END_DATE = '2020-07-30'
 
 ### model parameters
 
@@ -41,7 +45,7 @@ BATCH_SIZE = 64
 EPOCHS = 100
 
 # 'Ticker' stock market
-ticker = "TSLA"
+ticker = "JFC"
 ticker_data_filename = os.path.join("data", f"{ticker}_{date_now}.csv")
 # model name to save, making it as unique as possible based on parameters
 model_name = f"{date_now}_{ticker}-{LOSS}-{OPTIMIZER}-{CELL.__name__}-seq-{N_STEPS}-step-{LOOKUP_STEP}-layers-{N_LAYERS}-units-{UNITS}"
