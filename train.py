@@ -26,7 +26,7 @@ data = load_data(ticker, N_STEPS, lookup_step=LOOKUP_STEP, test_size=TEST_SIZE, 
 data["df"].to_csv(ticker_data_filename)
 
 # construct the model
-model = create_model(N_STEPS, loss=LOSS, units=UNITS, cell=CELL, n_layers=N_LAYERS,
+model = create_model(sequence_length=N_STEPS, loss=LOSS, units=UNITS, cell=CELL, n_layers=N_LAYERS,
                     dropout=DROPOUT, optimizer=OPTIMIZER, bidirectional=BIDIRECTIONAL)
 
 # some tensorflow callbacks
