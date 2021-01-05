@@ -12,6 +12,10 @@ r = requests.get(f'https://pselookup.vrymel.com/api/stocks/{ticker}/history/{sta
 
 data = r.json()
 
-df = json_normalize(data, 'history')
+df = pd.json_normalize(data, 'history')
+
+print(df.head())
+
+df = df.drop(['timestamp'], axis=1)
 
 print(df.head())

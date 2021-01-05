@@ -43,6 +43,8 @@ def load_data(ticker, n_steps=50, scale=True, shuffle=True, lookup_step=1,
 
     df = json_normalize(data, 'history')
 
+    df = df.drop(['timestamp'], axis=1)
+
     # # see if ticker is already a loaded stock from yahoo finance
     # if isinstance(ticker, str):
     #     # load it from yahoo_fin library
